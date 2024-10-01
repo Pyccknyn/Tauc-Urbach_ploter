@@ -15,4 +15,4 @@ How to download Julia: [https://julialang.org/downloads/]
 Adding packages: [https://docs.julialang.org/en/v1/stdlib/Pkg/]
 
 # Starting program
-A manual on executing and using the program is included. There is also a polish version of the manual. 
+A manual on executing and using the program is included. There is also a **_polish_** version of the manual. 
