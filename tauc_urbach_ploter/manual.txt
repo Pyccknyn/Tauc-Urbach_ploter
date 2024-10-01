@@ -1,0 +1,36 @@
+Program Instruction
+CSV Files:
+
+All CSV files should be in the same directory as the program.
+The CSV file must have the same number of rows filled in every column.
+The first row of the CSV file should contain the sample names, for example: sample1, empty cell, sample2, empty cell, etc.
+
+Running the Program:
+
+Open a terminal in the directory where the program is located.
+Start Julia by typing julia in the terminal.
+To run the program, type:
+julia
+include("tauc_urbach_ploter.jl")
+
+Accessing the Plots:
+
+To access the Tauc plot for a sample, type: tauc[n], where n is the sample number, e.g., tauc[1] for the first sample, tauc[2] for the second sample, and so on.
+To access the Urbach plot for a sample, type: urbach[n], e.g., urbach[1] for the first sample, urbach[2] for the second sample, etc.
+To view the sample names, type: namesD – this will show a Dictionary with corresponding numbers and sample names.
+Configuration File:
+
+In the config.txt file, you can edit the 
+γ factor and the names of the files containing transmittance and refraction data.
+The file names should be written in the format data_transmittance.csv and data_refraction.csv (with the .csv extension included).
+Plot Interaction:
+
+The plots have a slider that allows you to adjust the regression line.
+Clicking the "Save" button will save the current zoom and everything visible on the plot at that moment.
+You can zoom in and out on the plot by scrolling the mouse or dragging it with the right mouse button (RMB).
+You can also zoom in by selecting an area on the plot: hold the left mouse button (LMB) and drag to create a selection box – the plot will zoom into that area.
+To reset the plot view, double-click Ctrl + LMB.
+To reset the slider, double-click Shift + LMB on the slider.
+Updates:
+
+Future updates to the program will be added.
