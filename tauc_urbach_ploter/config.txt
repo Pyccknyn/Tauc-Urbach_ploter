@@ -1,0 +1,4 @@
+onlyTdata = false
+dataT_name = results_T_UV-VIS-NIR_Tcsv.csv
+dataR_name = results_T_UV-VIS-NIR_Rcsv.csv
+γ = 2
