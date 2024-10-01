@@ -17,4 +17,4 @@ Adding packages: [https://docs.julialang.org/en/v1/stdlib/Pkg/]
 # Starting program
 A manual on executing and using the program is included [here](tauc_urbach_ploter/manual.txt).
 
-**Instrukcja w języku polskim jest zawarta** [tutaj](tauc_urbach_ploter/manual_PL.txt).
+**Instrukcja w języku polskim jak uruchomić i używać programu jest zawarta** [tutaj](tauc_urbach_ploter/manual_PL.txt).
