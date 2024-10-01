@@ -12,4 +12,7 @@ You also have to install the following packages:
 ### In case you don't know how to do that, here's a quick tutorial!
 How to download Julia: [https://julialang.org/downloads/]
 
-Adding packages: [https://docs.julialang.org/en/v1/stdlib/Pkg/]
+Adding packages: [https://docs.julialang.org/en/v1/stdlib/Pkg/]##
+
+# Starting program
+A manual on executing and using the program is included. There is also a polish version of the manual. 
