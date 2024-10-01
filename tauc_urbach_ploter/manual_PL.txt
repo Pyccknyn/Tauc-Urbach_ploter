@@ -2,37 +2,48 @@ Instrukcja obsługi programu
 
 Pliki CSV:
 
-Wszystkie pliki CSV powinny znajdować się w tym samym katalogu co program.
-Plik CSV powinien mieć równą liczbę wierszy w każdej kolumnie.
-Pierwszy wiersz pliku CSV powinien zawierać nazwy próbek, na przykład: próbka1, pusta komórka, próbka2, pusta komórka, itd. kolejne wiersze powinny zawierać już odpowiednie dane
-nieparzyste wiersze długości fali wyrażone w nm, natomiast parzyste wartości transmisji lub refrakcji (w zależności od typu danych zawartych w pliku)
+	Wszystkie pliki CSV powinny znajdować się w tym samym katalogu co program.
+	Plik CSV powinien mieć równą liczbę wierszy w każdej kolumnie.
+	Pierwszy wiersz pliku CSV powinien zawierać nazwy próbek, na przykład: próbka1, pusta komórka, próbka2, pusta komórka, itd. kolejne wiersze powinny zawierać już odpowiednie dane
+	nieparzyste wiersze długości fali wyrażone w nm, natomiast parzyste wartości transmisji lub refrakcji (w zależności od typu danych zawartych w pliku)
 
 Uruchomienie programu:
 
-Otwórz terminal w katalogu, w którym znajduje się program.
-Uruchom Julię, wpisując w terminalu komendę: julia.
-W celu uruchomienia programu, wpisz:
-include("tauc_urbach_ploter.jl")
+	Otwórz terminal w katalogu, w którym znajduje się program.
+	Uruchom Julię, wpisując w terminalu komendę: 
+
+		julia
+
+	W celu uruchomienia programu, wpisz:
+
+		include("tauc_urbach_ploter.jl")
 
 Dostęp do wykresów:
 
-Aby uzyskać wykres Tauca dla danej próbki, wpisz: tauc[n], gdzie n to numer próbki, np. tauc[1] dla pierwszej próbki, tauc[2] dla drugiej, itd.
-Aby uzyskać wykres Urbacha dla danej próbki, wpisz: urbach[n], np. urbach[1] dla pierwszej próbki, urbach[2] dla drugiej, itd.
-Aby zobaczyć nazwy próbek, wpisz: namesD – pojawi się Dictionary, który pokaże numer próbki i jej nazwę.
+	Aby uzyskać wykres Tauca dla danej próbki, wpisz: tauc[n], gdzie n to numer próbki, np. tauc[1] dla pierwszej próbki, tauc[2] dla drugiej, itd.
+	Aby uzyskać wykres Urbacha dla danej próbki, wpisz: urbach[n], np. urbach[1] dla pierwszej próbki, urbach[2] dla drugiej, itd.
+
 Plik konfiguracyjny:
 
-W pliku config.txt można edytować współczynnik γ oraz nazwy plików z danymi transmisji i refrakcji.
-Nazwy plików powinny być zapisane w formacie np. dane_transmisja.csv, dane_refrakcja.csv.
+	W pliku config.txt można edytować współczynnik γ oraz nazwy plików z danymi transmisji i refrakcji.
+	Nazwy plików powinny być zapisane w formacie np. dane_transmisja.csv, dane_refrakcja.csv.
+
+Funkcjonalności programu:
+	
+	Po wpisaniu i wykonaniu komendy:
+
+		namesD - pokaże się lista ponumerowanych nazw próbek.
+		export_data(sample[n]) - można wyeksportować do pliku wyliczenia dla danej próbki.
 
 Obsługa wykresów:
 
-Wykresy posiadają suwak, który umożliwia dostosowanie linii regresji.
-Po kliknięciu przycisku „Save”, zapisuje się obecny zoom na wykresie oraz wszystko, co jest aktualnie widoczne.
-Możesz przybliżać i oddalać wykres, scrollując myszką i przesuwać się po nim za pomocą prawego przycisku myszy.
-Możesz również zrobić zoom, zaznaczając obszar na wykresie: trzymaj lewy przycisk myszy i przeciągnij, aby zaznaczyć interesujący obszar – po zwolnieniu przycisku wykres zostanie przybliżony do zaznaczonego obszaru.
-Aby zresetować widok wykresu, naciśnij Ctrl + LMB dwukrotnie.
-Aby zresetować suwak, naciśnij Shift + LMB dwukrotnie na suwaku.
+	Wykresy posiadają suwak, który umożliwia dostosowanie linii regresji.
+	Po kliknięciu przycisku „Save”, zapisuje się obecny zoom na wykresie oraz wszystko, co jest aktualnie widoczne.
+	Możesz przybliżać i oddalać wykres, scrollując myszką i przesuwać się po nim za pomocą prawego przycisku myszy.
+	Możesz również zrobić zoom, zaznaczając obszar na wykresie: trzymaj lewy przycisk myszy i przeciągnij, aby zaznaczyć interesujący obszar – po zwolnieniu przycisku wykres zostanie przybliżony do zaznaczonego obszaru.
+	Aby zresetować widok wykresu, naciśnij Ctrl + LMB dwukrotnie.
+	Aby zresetować suwak, naciśnij Shift + LMB dwukrotnie na suwaku.
 
 Aktualizacje:
 
-Dalsze aktualizacje programu będą dodawane w przyszłości.
+	Dalsze aktualizacje programu będą dodawane w przyszłości.
