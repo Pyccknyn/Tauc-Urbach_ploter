@@ -4,6 +4,22 @@ using GLMakie
 using GLM
 using StatsBase
 
+@kwdef struct DATA
+    R::DataFrame
+    T::DataFrame
+end
+
+@kwdef struct CALCULATIONS
+    sample_name::String
+    wavelengths::Vector
+    absorbance::Vector{Float64}
+    T100_minus_R::Vector{Float64}
+    minus_ad::Vector{Float64}
+    hv::Vector{Float64}
+    hv_absorbance_y::Vector{Float64}
+    urbach::Vector{Float64}
+end
+
 include("functions.jl")
 
 begin
@@ -17,31 +33,21 @@ begin
     end
 end
 
-@kwdef mutable struct DATA
-        R::DataFrame
-        T::DataFrame
-end
-
-@kwdef mutable struct CALCULATIONS
-    sample_name::String
-    wavelengths::Vector
-    absorbance::Vector{Float64}
-    T100_minus_R::Vector{Float64}
-    minus_ad ::Vector{Float64}
-    hv::Vector{Float64}
-    hv_absorbance_y::Vector{Float64}
-    urbach::Vector{Float64}
-end
-
 begin
 
-    data = DATA(
-        DataFrame(CSV.File(dataR_name)),
-        DataFrame(CSV.File(dataT_name)),
-    )
+    nrowsD = Dict{String, Integer}()
+    ncolsD = Dict{String, Integer}()
 
-    nrowsD = Dict("R" => nrow(data.R),"T" => nrow(data.T))
-    ncolsD = Dict("R" => ncol(data.R),"T" => ncol(data.T))
+    if config["onlyTdata"] == false
+        data = import_data(dataT_name, dataR_name)
+        nrowsD = Dict("R" => nrow(data.R),"T" => nrow(data.T))
+        ncolsD = Dict("R" => ncol(data.R),"T" => ncol(data.T))
+    else
+        data = import_data(dataT_name)
+    end
+
+    #nrowsD = Dict("R" => nrow(data.R),"T" => nrow(data.T))
+    #ncolsD = Dict("R" => ncol(data.R),"T" => ncol(data.T))
 
     names_of_columns = list_names(data.T, ncolsD["T"])
 

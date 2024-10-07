@@ -1,4 +1,4 @@
 onlyTdata = false
-dataT_name = results_T_UV-VIS-NIR_Tcsv.csv
-dataR_name = results_T_UV-VIS-NIR_Rcsv.csv
+dataT_name = testT.csv
+dataR_name = testR.csv
 γ = 2

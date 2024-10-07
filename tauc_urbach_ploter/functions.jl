@@ -1,4 +1,5 @@
 function read_config(config::String)::Dict{String, Any}
+
     lines = readlines("$config.txt")
     configD = Dict{String, Any}()
 
@@ -12,7 +13,7 @@ function read_config(config::String)::Dict{String, Any}
         elseif occursin(r"^-?\d+\.?\d*$", value)  # Regex to match Float64
             parsed_value = parse(Float64, value)
         else
-            parsed_value = value  # Treat as String
+            parsed_value = value  
         end
 
         configD[key] = parsed_value
@@ -21,14 +22,37 @@ function read_config(config::String)::Dict{String, Any}
     return configD
 end
 
+function import_data(dataT::DataFrame)::DATA
+    
+    data = DATA{
+        DataFrame(empty),
+        DataFrame(CSV.File(dataT)),
+    }
+
+    return data
+end
+
+function import_data(dataT, dataR)::DATA
+
+    data = DATA(
+        DataFrame(CSV.File(dataR)),
+        DataFrame(CSV.File(dataT)),
+    )
+    
+    return data
+end
+
 function get_wavelengths(data::DataFrame, sample::Integer, nrows::Integer)::AbstractVector
     wavelengths = []
-    if sample%2 == 0
+
+    if sample % 2 == 0
         sample += 1
-    end
+    end 
+
     for i in 1:nrows
         push!(wavelengths, data[i, sample])
     end
+
     return wavelengths
 end
 
@@ -46,8 +70,9 @@ function calculate_absorbance(dataR::DataFrame, dataT::DataFrame, sample::Intege
     return absorbance
 end
 
-function calculate_absorbance_onlyT(dataT::DataFrame, sample::Integer, nrowsT::Integer)::Vector{Float64}
+function calculate_absorbance(dataT::DataFrame, sample::Integer, nrowsT::Integer)::Vector{Float64}
     absorbance = Float64[]
+
     for i in 1:(nrowsT)
         if dataT[i, 2 * sample] <= 0
             push!(absorbance, NaN)
@@ -55,6 +80,7 @@ function calculate_absorbance_onlyT(dataT::DataFrame, sample::Integer, nrowsT::I
             push!(absorbance, -log10(T))
         end
     end
+
     return absorbance
 end
 
@@ -72,8 +98,19 @@ function calculate_T100_minus_R(dataR::DataFrame, dataT::DataFrame, sample::Inte
     return T100_minus_R
 end
 
+function calculate_T100(dataT::DataFrame, sample::Integer, nrowsT::Integer)::Vector{Float64}
+    T100 = Float64[]
+
+    for i in 1:(nrowsT)
+        push!(T100, (dataT[i, 2 * sample] / 100.0))
+    end
+
+    return T100
+end
+
 function calculate_minus_ad(T100_minus_R::Vector{Float64})::Vector{Float64}
     minus_ad = Float64[]
+
     for i in 1:length(T100_minus_R)
         if T100_minus_R[i] <= 0
             push!(minus_ad, NaN)
@@ -81,6 +118,7 @@ function calculate_minus_ad(T100_minus_R::Vector{Float64})::Vector{Float64}
             push!(minus_ad,log(ℯ,T100_minus_R[i]))
         end
     end
+
     return minus_ad
 end
 
@@ -96,21 +134,20 @@ calculate_hv_absorbance_1_r(hv::Vector{Float64}, absorbance::Vector{Float64}, y:
 
 function calculate_urbach_energy(minus_ad::Vector{Float64})::Vector{Float64}
     urbach_energy = Float64[]
+
     for i in 1:length(minus_ad)
-        if isnan(minus_ad[i])
+        if (isnan(minus_ad[i])) 
             push!(urbach_energy, 0)
         else
-            push!(urbach_energy, log(ℯ, -minus_ad[i]))
+            push!(urbach_energy, log(ℯ, abs(minus_ad[i])))
         end
     end
+
     return urbach_energy
 end
 
 function list_names(data::DataFrame, ncols::Integer)::Vector{String} 
     colNames = names(data)[1:2:ncols]
-    colNames = map(x -> replace(x, ".asc [nm]" => ""), colNames)
-    colNames = map(x -> replace(x, ".Cycle1" => ""), colNames)
-    colNames = map(x -> replace(x, r"^[^0-9]*" => ""), colNames)
     return colNames
 end
 
