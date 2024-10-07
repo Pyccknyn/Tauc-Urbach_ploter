@@ -10,7 +10,7 @@ You also have to install the following packages:
 * GLM
 * StatsBase
 ### In case you don't know how to do that, here's a quick tutorial!
-How to download Julia: [https://julialang.org/downloads/]
+How to download Julia: [https://julialang.org/downloads/] (I recommend using the PowerShell command on top of the instruction)
 
 Adding packages: [https://docs.julialang.org/en/v1/stdlib/Pkg/]
 
